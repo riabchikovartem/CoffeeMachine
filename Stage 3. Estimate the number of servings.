@@ -1,0 +1,36 @@
+package machine
+
+const val CUP = 200
+const val MILK = 50
+const val BEANS = 15
+
+fun main() {
+    println("""
+Starting to make a coffee
+Grinding coffee beans
+Boiling water
+Mixing boiled water with crushed coffee beans
+Pouring coffee into the cup
+Pouring some milk into the cup
+Coffee is ready!""".trimIndent())
+
+    print("Write how many ml of water the coffee machine has: ")
+    val availableWater: Int = readLine()!!.toInt()
+
+    print("Write how many ml of milk the coffee machine has: ")
+    val availableMilk: Int = readLine()!!.toInt()
+
+    print("Write how many grams of coffee beans the coffee machine has: ")
+    val availableBeans: Int = readLine()!!.toInt()
+
+    print("Write how many cups of coffee you will need: ")
+    val cups: Int = readLine()!!.toInt()
+
+    val maxCups = minOf((availableWater/200), (availableMilk/50), (availableBeans/15))
+
+    when {
+        maxCups > cups -> println("Yes, I can make that amount of coffee (and even ${maxCups - cups} more than that)")
+        maxCups < cups -> println("No, I can make only $maxCups cups of coffee")
+        else -> println("Yes, I can make that amount of coffee")
+    }
+}
